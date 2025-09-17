@@ -1,0 +1,26 @@
+Custom Software License – cnn-haskell-project
+
+Copyright (c) 2025 Pam Durham
+
+This software is proprietary and confidential. All rights reserved.
+
+By using, downloading, or accessing this software, you agree to the following terms:
+
+1. LICENSE GRANT
+   A paid, non-transferable, non-exclusive license is granted to the licensee to use this software solely for internal, commercial purposes, under the conditions of a valid agreement.
+
+2. RESTRICTIONS
+   - No Redistribution: You may not distribute, sublicense, or share the software in any form.
+   - No AI/ML Use: You may not use this software for training, developing, evaluating, or integrating with artificial intelligence (AI), machine learning (ML), or large language model (LLM) systems.
+   - No Modification: You may not reverse engineer, decompile, or modify the software unless explicitly permitted in writing.
+
+3. INTELLECTUAL PROPERTY
+   This software and all intellectual property therein remain the sole property of the licensor.
+
+4. TERMINATION
+   This license terminates automatically if any term is breached. Unauthorized use may result in legal consequences.
+
+5. NO WARRANTY
+   This software is provided “as is” without warranties of any kind. The licensor is not liable for any damages arising from its use.
+
+For licensing inquiries, contact: your.email@example.com

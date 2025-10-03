@@ -25,31 +25,16 @@ sum_neuron [] [] = 1
 activation_function:: Float -> Float
 
 activation_function x = 1.0/(1.0 ** (-x))
---complete neuron with z parameters and y starting weights
-complete_neuron:: Float -> Int-> Float
-
-complete_neuron y z = activation_function (sum_neuron (weights (float_to_int y)) (num_of_parameters z))
 --Complete neuron with adjustable wights
 complete_neuron_rework:: [Float] -> Int -> Float
 
 complete_neuron_rework y z = activation_function (sum_neuron y (num_of_parameters z))
---complete neuron layer with n neurons y to ys weights and z parameters
-neuron_layer:: Int -> [Float] -> Int -> [Float]
-
-neuron_layer n (y:ys) z
-    |n > 0 = [complete_neuron y z] ++ neuron_layer (n-1) ys z
-    |n == 0 = []
-
 --interaction between neuron layers
 neuron_layer_interaction::[Float] -> [Float] -> [Float]-> [Float]
 
 neuron_layer_interaction (y:ys) (z:zs) _ = [y * z] ++ (neuron_layer_interaction (y:ys) (zs) (z:zs))
 neuron_layer_interaction (y:ys) [] (z:zs)= neuron_layer_interaction (ys) (z:zs) (z:zs)
 neuron_layer_interaction [] _ _ = []
---(1 - 8 - 1) neural network example without adjusting weights
-neural_network_example:: [Float]
-
-neural_network_example = neuron_layer 1 (neuron_layer_interaction (neuron_layer 8 (weights 24) 24) (neuron_layer_interaction (neuron_layer 1 (weights 3) 3) [] []) []) 3
 -- memorizing and adjusting weights for each neuron
 adjusting_weights_for_each_neuron:: [Float] -> [Float] -> [Int] -> [Float]
 
@@ -68,7 +53,7 @@ nn_layers value [] param = []
 --creating a 2D matrix of random weights
 
 matrix_random_weights:: Int -> Int -> [[Float]]
-matrix_random_weights x y = [weights x] ++ matrix_random_weights (x-0.004387) (y-1)
+matrix_random_weights x y = [weights x] ++ matrix_random_weights (x) (y-1)
 --rebuilding and the NN itself (1 - 8 - 1) with random weights and random input
 
 neural_network_example_2:: [Float]

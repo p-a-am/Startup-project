@@ -72,4 +72,4 @@ matrix_random_weights x y = [weights x] ++ matrix_random_weights (x-0.004387) (y
 --rebuilding and the NN itself (1 - 8 - 1) with random weights and random input
 
 neural_network_example_2:: [Float]
-neural_network_example_2 = nn_layers (nn_layers () ()) (matrix_random_weights 3 1) 1
+neural_network_example_2 = nn_layers (nn_layers (nn_layers (nn_layers [] [] 0) (matrix_random_weights 3 1) 1) (matrix_random_weights 24 8) 8) (matrix_random_weights 3 1) 1

@@ -20,7 +20,7 @@ num_of_parameters x =  [x..1]
 sum_neuron::[Float] -> [Int] -> Float
 
 sum_neuron (b:bs) (x:xs) = b * int_to_float x + sum_neuron bs xs
-sum_neuron (b:bs) [] = 1
+sum_neuron [] [] = 1
 --non-linear Activation function
 activation_function:: Float -> Float
 
@@ -41,7 +41,8 @@ neuron_layer_interaction::[Float] -> [Float] -> [Float]-> [Float]
 
 neuron_layer_interaction (y:ys) (z:zs) _ = [y * z] ++ (neuron_layer_interaction (y:ys) (zs) (z:zs))
 neuron_layer_interaction (y:ys) [] (z:zs)= neuron_layer_interaction (ys) (z:zs) (z:zs)
---(1 - 8 - 32 - 32 - 8 - 1) neural network
+--(1 - 8 - 1) neural network example without adjusting weights
 neural_network_example:: [Float]
 
-neural_network_example = neuron_layer 1 (neuron_layer_interaction (neuron_layer 8 (weights 24) 24) (neuron_layer 32 (neuron_layer_interaction (neuron_layer 32 (weights 96) 96) (neuron_layer 8 (neuron_layer_interaction (neuron_layer 1 (weights 3) 3) [] []) 24) []) 96) []) 3
+neural_network_example = neuron_layer 1 (neuron_layer_interaction (neuron_layer 8 (weights 24) 24) (neuron_layer_interaction (neuron_layer 1 (weights 3) 3) [] []) []) 3
+-- adjusting weights for each layer

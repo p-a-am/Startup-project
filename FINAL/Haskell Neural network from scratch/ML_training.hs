@@ -7,11 +7,12 @@ float_to_int:: Float -> Int
 
 float_to_int 0 = 0
 --random weights at the beginning 
-weights:: Int -> [Float]
+weights:: Float -> Int -> [Float]
 
-weights x
-    | x > 0 = [(int_to_float x) * 0.8263] ++ weights (x-1)
-    | x == 0 = []
+weights x y
+    | y > 0 = [x * 0.7691] ++ weights (x * 0.8263) (y-1)
+    | y == 0 = []
+    
 --how many parameters
 num_of_parameters:: Int -> [Int]
 
@@ -52,9 +53,11 @@ nn_layers value ((x:xs):ys) param = nn_neuron_building value (x:xs) param ++ nn_
 nn_layers value [] param = []
 --creating a 2D matrix of random weights
 
-matrix_random_weights:: Int -> Int -> [[Float]]
-matrix_random_weights x y = [weights x] ++ matrix_random_weights (x) (y-1)
+matrix_random_weights:: [Float] -> Int -> Int -> [[Float]]
+matrix_random_weights [x] y z = [weights x y] ++ matrix_random_weights ([x]) (y-1) z
 --rebuilding and the NN itself (1 - 8 - 1) with random weights and random input (expected output is 0.7 in this case cenario)
-neural_network_example_2:: [Float] -> [Float]-> [Float]
+neural_network_example_2:: [Float] -> [Float] -> [Float]
 
-neural_network_example_2 input value = neuron_layer_interaction (nn_layers (value) (matrix_random_weights 3 1) (1)) (neuron_layer_interaction (nn_layers (value) (matrix_random_weights 24 8) (8)) (neuron_layer_interaction (nn_layers (value) (matrix_random_weights 3 1) (1)) [] [1]) [2]) [3]
+neural_network_example_2 input value = neuron_layer_interaction (nn_layers (value) (matrix_random_weights input 3 1) (1)) (neuron_layer_interaction (nn_layers (value) (matrix_random_weights input 24 8) (8)) (neuron_layer_interaction (nn_layers (value) (matrix_random_weights input 3 1) (1)) [] [1]) [2]) [3]
+--tokenização do LLM
+

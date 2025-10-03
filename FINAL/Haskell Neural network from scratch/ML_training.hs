@@ -41,8 +41,14 @@ neuron_layer_interaction::[Float] -> [Float] -> [Float]-> [Float]
 
 neuron_layer_interaction (y:ys) (z:zs) _ = [y * z] ++ (neuron_layer_interaction (y:ys) (zs) (z:zs))
 neuron_layer_interaction (y:ys) [] (z:zs)= neuron_layer_interaction (ys) (z:zs) (z:zs)
+neuron_layer_interaction [] _ _ = []
 --(1 - 8 - 1) neural network example without adjusting weights
 neural_network_example:: [Float]
 
 neural_network_example = neuron_layer 1 (neuron_layer_interaction (neuron_layer 8 (weights 24) 24) (neuron_layer_interaction (neuron_layer 1 (weights 3) 3) [] []) []) 3
--- adjusting weights for each layer
+-- memorizing and adjusting weights for each neuron
+adjusting_weights_for_each_neuron:: [Float] -> Float -> [Float] -> [Float]
+
+adjusting_weights_for_each_neuron (saida:xs) esperado (variavel:zs) = [2 * (saida - esperado) - variavel] ++ adjusting_weights_for_each_neuron (saida:xs) esperado zs
+adjusting_weights_for_each_neuron (saida:xs) esperado [] = []
+

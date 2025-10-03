@@ -54,7 +54,7 @@ nn_layers value [] param = []
 
 matrix_random_weights:: Int -> Int -> [[Float]]
 matrix_random_weights x y = [weights x] ++ matrix_random_weights (x) (y-1)
---rebuilding and the NN itself (1 - 8 - 1) with random weights and random input
+--rebuilding and the NN itself (1 - 8 - 1) with random weights and random input (expected output is 0.7 in this case cenario)
+neural_network_example_2:: [Float] -> [Float]-> [Float]
 
-neural_network_example_2:: [Float]
-neural_network_example_2 = nn_layers (nn_layers (nn_layers (nn_layers [] [] 0) (matrix_random_weights 3 1) 1) (matrix_random_weights 24 8) 8) (matrix_random_weights 3 1) 1
+neural_network_example_2 input value = neuron_layer_interaction (nn_layers (value) (matrix_random_weights 3 1) (1)) (neuron_layer_interaction (nn_layers (value) (matrix_random_weights 24 8) (8)) (neuron_layer_interaction (nn_layers (value) (matrix_random_weights 3 1) (1)) [] [1]) [2]) [3]
